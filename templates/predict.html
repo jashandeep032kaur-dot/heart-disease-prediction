@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predict Heart Disease</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+    label { display: block; margin-top: 12px; }
+    input[type=number] { width: 100%; padding: 8px; margin-top: 4px; }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #2E86C1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1B4F72;
+    }
+    .result, .error {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Heart Disease Prediction Form</h1>
+  
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+  
+  {% if prediction %}
+  <div class="result">{{ prediction }}</div>
+  <div class="result">{{ probability }}</div>
+  {% endif %}
+  
+  <form method="post">
+    {% for feat in ['male', 'age', 'education', 'currentSmoker', 'cigsPerDay', 'BPMeds', 'prevalentStroke', 'prevalentHyp', 'diabetes', 'totChol', 'sysBP', 'diaBP', 'BMI', 'heartRate', 'glucose'] %}
+    <label for="{{ feat }}">{{ feat }}</label>
+    <input type="number" step="any" name="{{ feat }}" id="{{ feat }}" required>
+    {% endfor %}
+    <button type="submit">Predict</button>
+  </form>
+
+  <p><a href="/">Back to Home</a></p>
+</body>
+</html>
