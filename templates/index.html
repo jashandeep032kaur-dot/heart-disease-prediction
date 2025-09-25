@@ -5,30 +5,45 @@
     <title>Heart Disease Prediction</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(to right, #ff6b6b, #f06595);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #f06595, #ff8787);
             color: #fff;
             margin: 0;
             padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
             text-align: center;
         }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 0;
-        }
+
         h1 {
             font-size: 3em;
             margin-bottom: 10px;
         }
+
         p.intro {
-            font-size: 1.5em;
-            margin-bottom: 30px;
+            font-size: 1.4em;
+            margin-bottom: 40px;
         }
+
+        .heart-img {
+            width: 180px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .heart-img:hover {
+            transform: scale(1.05);
+        }
+
         .btn {
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 18px 35px;
+            font-size: 1.3em;
             color: #ff6b6b;
             background-color: #fff;
             border: none;
@@ -36,112 +51,136 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            display: inline-block;
+            margin-bottom: 50px;
         }
+
         .btn:hover {
             background-color: #ffe0e0;
             transform: scale(1.1);
         }
-        .heart-img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
+
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
+            gap: 25px;
         }
+
         .card {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 15px;
+            padding: 25px 20px;
+            border-radius: 20px;
             transition: all 0.3s ease;
             cursor: pointer;
         }
+
         .card:hover {
             background: rgba(255,255,255,0.3);
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
+
         .card h3 {
             margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-size: 1.3em;
             color: #fff;
         }
+
         .card p {
             font-size: 0.95em;
-            line-height: 1.4em;
+            line-height: 1.5em;
         }
+
         .important {
             color: #ffe0e0;
             font-weight: bold;
+        }
+
+        .note {
+            margin-top: 20px;
+            font-size: 1em;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .btn {
+                width: 70%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Heart image -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Human_heart_anterior_view.svg/512px-Human_heart_anterior_view.svg.png" alt="Heart" class="heart-img">
-        
-        <h1>Heart Disease Prediction</h1>
-        <p class="intro">Welcome! I am <strong>Jashandeep Kaur</strong>. Predict your 10-year heart disease risk and understand your health.</p>
-        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Human_heart_anterior_view.svg/512px-Human_heart_anterior_view.svg.png" alt="Heart Image" class="heart-img">
+
+        <h1>❤️ Heart Disease Prediction</h1>
+        <p class="intro">Hi! I am <strong>Jashandeep Kaur</strong> 👋. Predict your 10-year heart disease risk and learn about important health indicators! 🩺💖</p>
+
+        <!-- Button to go to prediction form -->
         <a href="/predict" class="btn">Predict Heart Disease</a>
 
-        <h2 style="margin-top:60px;">Dataset Columns & Importance</h2>
+        <h2>📊 Dataset Columns & Importance</h2>
         <div class="cards">
             <div class="card">
                 <h3>Sex_male</h3>
-                <p>1 = Male, 0 = Female. <span class="important">Important</span> because men have higher risk.</p>
+                <p>1 = Male, 0 = Female. <span class="important">Important:</span> Men have higher risk of heart disease.</p>
             </div>
             <div class="card">
                 <h3>age</h3>
-                <p>Age in years. <span class="important">Very important</span> as risk increases with age.</p>
+                <p>Age in years. <span class="important">Very important:</span> Risk increases with age.</p>
             </div>
             <div class="card">
                 <h3>cigsPerDay</h3>
-                <p>Number of cigarettes smoked daily. <span class="important">Used in model</span> to quantify smoking intensity.</p>
+                <p>Number of cigarettes smoked daily. <span class="important">Used:</span> Higher smoking increases risk.</p>
             </div>
             <div class="card">
                 <h3>BPMeds</h3>
-                <p>1 = On blood pressure meds, 0 = No. <span class="important">Used</span> as high BP is a risk factor.</p>
+                <p>1 = On blood pressure meds, 0 = No. <span class="important">Used:</span> High BP is a risk factor.</p>
             </div>
             <div class="card">
                 <h3>diabetes</h3>
-                <p>1 = Yes, 0 = No. <span class="important">Used</span> as a major risk factor for heart disease.</p>
+                <p>1 = Yes, 0 = No. <span class="important">Used:</span> Diabetes significantly raises risk.</p>
             </div>
             <div class="card">
                 <h3>BMI</h3>
-                <p>Body Mass Index. <span class="important">Used</span> for obesity risk factor.</p>
+                <p>Body Mass Index. <span class="important">Used:</span> Obesity is a risk factor for heart disease.</p>
             </div>
             <div class="card">
                 <h3>totChol</h3>
-                <p>Total cholesterol in mg/dL. <span class="important">Used</span> to assess lipid-related risk.</p>
+                <p>Total cholesterol in mg/dL. <span class="important">Used:</span> High cholesterol increases risk.</p>
             </div>
             <div class="card">
                 <h3>sysBP</h3>
-                <p>Systolic blood pressure. <span class="important">Used</span> for hypertension-related risk.</p>
+                <p>Systolic blood pressure. <span class="important">Used:</span> High BP is a key risk factor.</p>
             </div>
             <div class="card">
                 <h3>glucose</h3>
-                <p>Blood glucose level. <span class="important">Used</span> to detect diabetes-related risk.</p>
+                <p>Blood glucose level. <span class="important">Used:</span> Elevated glucose indicates diabetes risk.</p>
             </div>
             <div class="card">
                 <h3>prevalentStroke</h3>
-                <p>1 = History of stroke, 0 = No. Low occurrence; excluded from model.</p>
+                <p>1 = History of stroke, 0 = No. <span class="important">Not used in model:</span> Rare and partially redundant.</p>
             </div>
             <div class="card">
                 <h3>prevalentHyp</h3>
-                <p>1 = Hypertension history, 0 = No. Excluded to avoid redundancy with BPMeds and sysBP.</p>
+                <p>1 = Hypertension history, 0 = No. <span class="important">Not used:</span> Already captured by BPMeds & sysBP.</p>
             </div>
             <div class="card">
                 <h3>currentSmoker</h3>
-                <p>1 = Currently smoking, 0 = No. Partially captured by cigsPerDay; excluded from model.</p>
+                <p>1 = Currently smoking, 0 = No. <span class="important">Not used:</span> Partially captured by cigsPerDay.</p>
             </div>
             <div class="card">
                 <h3>education</h3>
-                <p>Education level. Moderate importance; excluded to simplify model.</p>
+                <p>Education level. <span class="important">Dropped:</span> Minimal effect on prediction, excluded to simplify model.</p>
             </div>
+        </div>
+
+        <div class="note">
+            ✅ <strong>Note:</strong> We selected the most influential 9 features for prediction to make the model simpler and more accurate. Education, prevalentStroke, prevalentHyp, and currentSmoker were dropped to reduce redundancy and noise.
         </div>
     </div>
 </body>
