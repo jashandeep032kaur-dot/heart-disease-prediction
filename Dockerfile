@@ -1,23 +1,24 @@
 # Use an official Python runtime as a parent image
 FROM python:3.10-slim
 
-# Set working directory in container
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set working directory
 WORKDIR /app
 
-# Copy requirements.txt and install dependencies
-COPY requirements.txt .
-
+# Copy requirements and install dependencies
+COPY requirements.txt /app/
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app source code and model file
-COPY . .
+# Copy the rest of the application
+COPY . /app/
 
-# Expose the port Flask will run on
-EXPOSE 5000
+# Expose the port the app runs on
+EXPOSE 7860
 
-# Set environment variable to tell Flask the app to run
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+# Command to run the application using Gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:7860", "app:app"]
 
-# Run the Flask app
-CMD ["flask", "run"]
