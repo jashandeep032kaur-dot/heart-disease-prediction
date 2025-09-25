@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import joblib
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
@@ -50,5 +51,5 @@ def predict():
         return render_template('predict.html')
 
 if __name__ == '__main__':
-    # Hugging Face Spaces requires port=7860 and host="0.0.0.0"
-    app.run(debug=False, host="0.0.0.0", port=7860)
+    port = int(os.getenv("PORT", 7860))  # Hugging Face provides PORT env var
+    app.run(debug=False, host="0.0.0.0", port=port)
