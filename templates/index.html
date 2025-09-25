@@ -162,9 +162,9 @@
                 <p>Education level. <span class="important">Dropped:</span> Minimal effect on prediction, excluded to simplify model.</p>
             </div>
         </div>
-
         <div class="note">
-            ✅ <strong>Note:</strong> We selected the most influential 9 features for prediction to make the model simpler and more accurate. Education, prevalentStroke, prevalentHyp, and currentSmoker were dropped to reduce redundancy and noise.
+            ✅ <strong>Why we use only 9 features:</strong> To make the model simpler, faster, and more accurate, we selected the most influential features: <strong>age, Sex_male, cigsPerDay, BPMeds, diabetes, BMI, totChol, sysBP, glucose</strong>. <br>
+            ❌ Features dropped: <strong>education</strong> (minimal effect), <strong>prevalentStroke</strong> (rare), <strong>prevalentHyp</strong> (redundant), <strong>currentSmoker</strong> (captured by cigsPerDay).
         </div>
     </div>
 </body>
