@@ -2,136 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Heart Disease Prediction Form</title>
+    <title>Predict Heart Disease</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #ff6b6b, #f06595);
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #2ecc71, #ff6b6b);
+            color: #fff;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
+            text-align: center;
         }
 
         .container {
-            background: rgba(255,255,255,0.1);
-            padding: 40px 30px;
-            border-radius: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
         }
 
         h1 {
-            margin-bottom: 30px;
-            font-size: 2.5em;
+            font-size: 2.8em;
+            margin-bottom: 20px;
         }
 
-        form input {
+        form {
+            background: rgba(255,255,255,0.15);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        input[type="number"] {
             width: 90%;
-            padding: 15px;
+            padding: 12px;
             margin: 10px 0;
+            border: none;
             border-radius: 15px;
-            border: none;
             font-size: 1em;
-            transition: all 0.3s ease;
         }
 
-        form input:focus {
-            outline: none;
-            box-shadow: 0 0 10px #fff;
-            background-color: rgba(255,255,255,0.2);
-        }
-
-        input[type="submit"], .back-btn {
-            width: 50%;
+        input[type="submit"], .btn-home {
+            padding: 15px 35px;
+            font-size: 1.2em;
+            color: #2ecc71;
             background-color: #fff;
-            color: #ff6b6b;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 25px;
-            padding: 15px;
-            margin-top: 20px;
             border: none;
-            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 15px;
             text-decoration: none;
             display: inline-block;
         }
 
-        input[type="submit"]:hover, .back-btn:hover {
+        input[type="submit"]:hover, .btn-home:hover {
             background-color: #ffe0e0;
             transform: scale(1.1);
         }
 
-        .result, .error {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-        }
-
         .result {
-            background: rgba(255,255,255,0.3);
-            color: #fff;
+            margin-top: 30px;
+            font-size: 1.3em;
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.6em;
         }
 
-        .result:hover {
-            background: rgba(255,255,255,0.5);
-            transform: scale(1.05);
+        .probability {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #ffe0e0;
         }
 
-        .error {
-            background: rgba(255,0,0,0.4);
-            color: #fff;
+        .description {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #f0f0f0;
+        }
+
+        @media (max-width: 600px) {
+            input[type="number"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Heart Disease Prediction</h1>
+        <h1>💖 Heart Disease Prediction Form</h1>
+
         <form method="POST" action="/predict">
-            <input type="number" name="age" placeholder="Age (years)" step="1" required>
-            <input type="number" name="Sex_male" placeholder="Sex: 1 = Male, 0 = Female" step="1" min="0" max="1" required>
-            <input type="number" name="cigsPerDay" placeholder="Cigarettes per day (0 if none)" step="1" required>
-            <input type="number" name="BPMeds" placeholder="Blood pressure meds: 1 = Yes, 0 = No" step="1" min="0" max="1" required>
-            <input type="number" name="diabetes" placeholder="Diabetes: 1 = Yes, 0 = No" step="1" min="0" max="1" required>
-            <input type="number" name="BMI" placeholder="Body Mass Index (e.g., 25.5)" step="0.1" required>
-            <input type="number" name="totChol" placeholder="Total Cholesterol (mg/dL)" step="0.1" required>
-            <input type="number" name="sysBP" placeholder="Systolic Blood Pressure" step="0.1" required>
-            <input type="number" name="glucose" placeholder="Glucose level (mg/dL)" step="0.1" required>
-            <br>
+            <input type="number" step="any" name="age" placeholder="Age in years" required>
+            <input type="number" step="any" name="Sex_male" placeholder="Sex (1 = Male, 0 = Female)" required>
+            <input type="number" step="any" name="cigsPerDay" placeholder="Cigarettes per day" required>
+            <input type="number" step="any" name="BPMeds" placeholder="Blood pressure meds (1 = Yes, 0 = No)" required>
+            <input type="number" step="any" name="diabetes" placeholder="Diabetes (1 = Yes, 0 = No)" required>
+            <input type="number" step="any" name="BMI" placeholder="Body Mass Index" required>
+            <input type="number" step="any" name="totChol" placeholder="Total cholesterol (mg/dL)" required>
+            <input type="number" step="any" name="sysBP" placeholder="Systolic blood pressure" required>
+            <input type="number" step="any" name="glucose" placeholder="Glucose level" required>
+
             <input type="submit" value="Predict">
         </form>
 
-        <a href="/" class="back-btn">Back to Home</a>
-
         {% if prediction %}
-            <div class="result">
-                Prediction: {{ prediction }}<br>
-                Probability: {{ probability }}
-            </div>
+        <div class="result">
+            <p><strong>Prediction:</strong> {{ prediction }}</p>
+            <p class="probability">Probability: {{ probability }}</p>
+            <p class="description">
+                The probability indicates the likelihood of developing heart disease within 10 years.
+                A higher probability (closer to 1 or 100%) means higher risk, while lower means lower risk.
+            </p>
+        </div>
         {% endif %}
 
         {% if error %}
-            <div class="error">
-                Error: {{ error }}
-            </div>
+        <div class="result">
+            <p class="description">⚠️ Error: {{ error }}</p>
+        </div>
         {% endif %}
+
+        <!-- Back to Home Button -->
+        <a href="/" class="btn-home">🏠 Back to Home</a>
     </div>
 </body>
 </html>
