@@ -5,18 +5,18 @@
     <title>Heart Disease Prediction</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: linear-gradient(to right, #ff6b6b, #f06595);
             color: #fff;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
         .container {
             width: 90%;
             max-width: 1200px;
             margin: auto;
             padding: 50px 0;
-            text-align: center;
         }
         h1 {
             font-size: 3em;
@@ -24,7 +24,7 @@
         }
         p.intro {
             font-size: 1.5em;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .btn {
             padding: 15px 30px;
@@ -40,6 +40,10 @@
         .btn:hover {
             background-color: #ffe0e0;
             transform: scale(1.1);
+        }
+        .heart-img {
+            width: 150px;
+            margin-bottom: 20px;
         }
         .cards {
             display: grid;
@@ -76,63 +80,67 @@
 </head>
 <body>
     <div class="container">
+        <!-- Heart image -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Human_heart_anterior_view.svg/512px-Human_heart_anterior_view.svg.png" alt="Heart" class="heart-img">
+        
         <h1>Heart Disease Prediction</h1>
-        <p class="intro">Welcome! I am <strong>Jashandeep Kaur</strong>. Predict your 10-year heart disease risk.</p>
-        <a href="predict.html" class="btn">Predict Heart Disease</a>
+        <p class="intro">Welcome! I am <strong>Jashandeep Kaur</strong>. Predict your 10-year heart disease risk and understand your health.</p>
+        
+        <a href="/predict" class="btn">Predict Heart Disease</a>
 
         <h2 style="margin-top:60px;">Dataset Columns & Importance</h2>
         <div class="cards">
             <div class="card">
-                <h3>male</h3>
-                <p>1 = Male, 0 = Female. <span class="important">Important</span> because men have higher risk for heart disease.</p>
+                <h3>Sex_male</h3>
+                <p>1 = Male, 0 = Female. <span class="important">Important</span> because men have higher risk.</p>
             </div>
             <div class="card">
                 <h3>age</h3>
-                <p>Age in years. <span class="important">Very important</span> predictor as risk increases with age.</p>
-            </div>
-            <div class="card">
-                <h3>education</h3>
-                <p>Education level. Moderate importance; reflects lifestyle and awareness.</p>
-            </div>
-            <div class="card">
-                <h3>currentSmoker</h3>
-                <p>1 = Currently smoking, 0 = Not. Smoking increases heart disease risk but partially captured by cigsPerDay.</p>
+                <p>Age in years. <span class="important">Very important</span> as risk increases with age.</p>
             </div>
             <div class="card">
                 <h3>cigsPerDay</h3>
-                <p>Number of cigarettes per day. <span class="important">Used in model</span> to quantify smoking intensity.</p>
+                <p>Number of cigarettes smoked daily. <span class="important">Used in model</span> to quantify smoking intensity.</p>
             </div>
             <div class="card">
                 <h3>BPMeds</h3>
-                <p>1 = On blood pressure meds, 0 = No. <span class="important">Used in model</span> as high BP is risk factor.</p>
-            </div>
-            <div class="card">
-                <h3>prevalentStroke</h3>
-                <p>1 = History of stroke, 0 = No. Low occurrence; excluded from model for simplicity.</p>
-            </div>
-            <div class="card">
-                <h3>prevalentHyp</h3>
-                <p>1 = Hypertension history, 0 = No. Related to BP meds; excluded to avoid redundancy.</p>
+                <p>1 = On blood pressure meds, 0 = No. <span class="important">Used</span> as high BP is a risk factor.</p>
             </div>
             <div class="card">
                 <h3>diabetes</h3>
-                <p>1 = Diabetes, 0 = No. <span class="important">Used in model</span> as a major risk factor.</p>
-            </div>
-            <div class="card">
-                <h3>totChol</h3>
-                <p>Total cholesterol in mg/dL. <span class="important">Used in model</span> for lipid profile info.</p>
-            </div>
-            <div class="card">
-                <h3>sysBP</h3>
-                <p>Systolic blood pressure. <span class="important">Used in model</span> for hypertension risk.</p>
+                <p>1 = Yes, 0 = No. <span class="important">Used</span> as a major risk factor for heart disease.</p>
             </div>
             <div class="card">
                 <h3>BMI</h3>
-                <p>Body Mass Index. <span class="important">Used in model</span> for obesity risk factor.</p>
+                <p>Body Mass Index. <span class="important">Used</span> for obesity risk factor.</p>
+            </div>
+            <div class="card">
+                <h3>totChol</h3>
+                <p>Total cholesterol in mg/dL. <span class="important">Used</span> to assess lipid-related risk.</p>
+            </div>
+            <div class="card">
+                <h3>sysBP</h3>
+                <p>Systolic blood pressure. <span class="important">Used</span> for hypertension-related risk.</p>
             </div>
             <div class="card">
                 <h3>glucose</h3>
-                <p>Blood glucose level. <span class="important">Used in model</span> to detect diabetes-related risk.</p>
+                <p>Blood glucose level. <span class="important">Used</span> to detect diabetes-related risk.</p>
+            </div>
+            <div class="card">
+                <h3>prevalentStroke</h3>
+                <p>1 = History of stroke, 0 = No. Low occurrence; excluded from model.</p>
+            </div>
+            <div class="card">
+                <h3>prevalentHyp</h3>
+                <p>1 = Hypertension history, 0 = No. Excluded to avoid redundancy with BPMeds and sysBP.</p>
+            </div>
+            <div class="card">
+                <h3>currentSmoker</h3>
+                <p>1 = Currently smoking, 0 = No. Partially captured by cigsPerDay; excluded from model.</p>
+            </div>
+            <div class="card">
+                <h3>education</h3>
+                <p>Education level. Moderate importance; excluded to simplify model.</p>
             </div>
         </div>
     </div>
