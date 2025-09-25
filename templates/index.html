@@ -4,32 +4,7 @@
     <meta charset="UTF-8">
     <title>Heart Disease Prediction</title>
     <style>
-          .rotating-heart {
-        display: inline-block;
-        animation: rotateHeart 4s linear infinite;
-        font-size: 1.2em; /* Adjust emoji size */
-        transform-style: preserve-3d;
-    }
-
-    @keyframes rotateHeart {
-        0% {
-            transform: rotateX(0deg) rotateY(0deg);
-        }
-        25% {
-            transform: rotateX(180deg) rotateY(0deg);
-        }
-        50% {
-            transform: rotateX(180deg) rotateY(180deg);
-        }
-        75% {
-            transform: rotateX(0deg) rotateY(180deg);
-        }
-        100% {
-            transform: rotateX(0deg) rotateY(0deg);
-        }
-    }
-       
-    body {
+        body {
             font-family: Arial, Helvetica, sans-serif;
             background: linear-gradient(135deg, #2ecc71, #ff6b6b);
             color: #fff;
@@ -44,9 +19,48 @@
             padding: 50px 20px;
         }
 
+        .headline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
         h1 {
             font-size: 3em;
-            margin-bottom: 10px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rotating-heart {
+            display: inline-block;
+            animation: rotateHeart 4s linear infinite;
+            font-size: 1.2em;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes rotateHeart {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            25% { transform: rotateX(180deg) rotateY(0deg); }
+            50% { transform: rotateX(180deg) rotateY(180deg); }
+            75% { transform: rotateX(0deg) rotateY(180deg); }
+            100% { transform: rotateX(0deg) rotateY(0deg); }
+        }
+
+        .heart-img {
+            width: 80px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .heart-img:hover {
+            transform: scale(1.05);
         }
 
         p.intro {
@@ -110,28 +124,37 @@
         }
 
         .note {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 1em;
             background: rgba(255,255,255,0.15);
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
+            line-height: 1.6em;
         }
 
         @media (max-width: 600px) {
             .btn {
                 width: 70%;
             }
+            .headline {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-      <h1>
-    <span class="rotating-heart">❤️</span> Heart Disease Prediction
-</h1>
+        <div class="headline">
+            <h1>
+                <span class="rotating-heart">❤️</span> Heart Disease Prediction
+            </h1>
+            <!-- Real heart image on the right of headline -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Human_heart_anterior_view.svg/128px-Human_heart_anterior_view.svg.png" alt="Real Heart" class="heart-img">
+        </div>
+
         <p class="intro">Hi! I am <strong>Jashandeep Kaur</strong> 👋. Predict your 10-year heart disease risk and learn about important health indicators! 🩺💖</p>
 
-        <!-- Button to go to prediction form -->
         <a href="/predict" class="btn">Predict Heart Disease</a>
 
         <h2>📊 Dataset Columns & Importance</h2>
@@ -186,9 +209,10 @@
             </div>
             <div class="card">
                 <h3>education</h3>
-                <p>Education level. <span class="important">Dropped:</span> Minimal effect on prediction, excluded to simplify model.</p>
+                <p>Education level. <span class="important">Dropped:</span> Minimal effect on prediction; excluded to simplify model.</p>
             </div>
         </div>
+
         <div class="note">
             ✅ <strong>Why we use only 9 features:</strong> To make the model simpler, faster, and more accurate, we selected the most influential features: <strong>age, Sex_male, cigsPerDay, BPMeds, diabetes, BMI, totChol, sysBP, glucose</strong>. <br>
             ❌ Features dropped: <strong>education</strong> (minimal effect), <strong>prevalentStroke</strong> (rare), <strong>prevalentHyp</strong> (redundant), <strong>currentSmoker</strong> (captured by cigsPerDay).
