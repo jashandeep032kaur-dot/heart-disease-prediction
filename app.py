@@ -50,6 +50,8 @@ def predict():
         # GET request: show form
         return render_template('predict.html')
 
-if __name__ == '__main__':
-    port = int(os.getenv("PORT", 7860))  # Hugging Face provides PORT env var
-    app.run(debug=False, host="0.0.0.0", port=port)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 7860))  # Hugging Face sets PORT
+    app.run(host="0.0.0.0", port=port, debug=False)
+
