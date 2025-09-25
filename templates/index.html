@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <title>Heart Disease Prediction</title>
     <style>
+      .rotating-heart {
+        display: inline-block;
+        animation: rotateHeart 3s linear infinite;
+        font-size: 1.2em; /* Adjust size if needed */
+    }
+
+    @keyframes rotateHeart {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
         body {
             font-family: Arial, Helvetica, sans-serif;
             background: linear-gradient(135deg, #2ecc71, #ff6b6b);
@@ -101,7 +115,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>❤️ Heart Disease Prediction</h1>
+      <h1>
+    <span class="rotating-heart">❤️</span> Heart Disease Prediction
+</h1>
         <p class="intro">Hi! I am <strong>Jashandeep Kaur</strong> 👋. Predict your 10-year heart disease risk and learn about important health indicators! 🩺💖</p>
 
         <!-- Button to go to prediction form -->
