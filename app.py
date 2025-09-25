@@ -7,11 +7,10 @@ app = Flask(__name__)
 # Load the trained model once at startup
 model = joblib.load("heartDiseasePredction.pkl")
 
-# Feature names expected by your model
+# Features used during training
 feature_names = [
-    "male", "age", "education", "currentSmoker", "cigsPerDay", "BPMeds",
-    "prevalentStroke", "prevalentHyp", "diabetes", "totChol", "sysBP",
-    "diaBP", "BMI", "heartRate", "glucose"
+    "age", "Sex_male", "cigsPerDay", "BPMeds",
+    "diabetes", "BMI", "totChol", "sysBP", "glucose"
 ]
 
 @app.route('/')
@@ -26,20 +25,24 @@ def predict():
             input_data = []
             for feat in feature_names:
                 val = request.form.get(feat)
-                if val is None or val == '':
+                if val is None or val.strip() == '':
                     return render_template('predict.html', error=f"Missing value for {feat}")
                 input_data.append(float(val))
-            
+
             # Prepare DataFrame for prediction
             input_df = pd.DataFrame([input_data], columns=feature_names)
-            
+
             # Predict and get probability
             prediction = model.predict(input_df)[0]
             proba = model.predict_proba(input_df)[0][1]
-            
+
             label = "Heart Disease Risk" if prediction == 1 else "No Heart Disease Risk"
-            
-            return render_template('predict.html', prediction=label, probability=f"{proba:.2f}")
+
+            return render_template(
+                'predict.html',
+                prediction=label,
+                probability=f"{proba:.2f}"
+            )
         except Exception as e:
             return render_template('predict.html', error=str(e))
     else:
@@ -47,4 +50,5 @@ def predict():
         return render_template('predict.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000, host="0.0.0.0")
+    # Hugging Face Spaces requires port=7860 and host="0.0.0.0"
+    app.run(debug=False, host="0.0.0.0", port=7860)
